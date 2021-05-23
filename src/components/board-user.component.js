@@ -36,7 +36,7 @@ export default class BoardUser extends Component {
   }
 
   handleClick(deviceId) {
-    
+    this.props.history.push("/device?id="+deviceId);
     // this.setState({ redirect: "/device?id="+deviceId });
   }
 
@@ -98,10 +98,10 @@ export default class BoardUser extends Component {
   render() {
     return (
       <div className="container-flex">
-        {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick(device.id)}> {device.name} </button>)}
+        {this.state.devices.map(device => <button key={device.id} className="box" onClick={()=>this.handleClick(device.id)}> {device.name} </button>)}
         
         <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
-        <button onClick={this.sendPairRequest}>Pair</button>
+        <button onClick={()=>this.sendPairRequest}>Pair</button>
       </div>
     );
   }
