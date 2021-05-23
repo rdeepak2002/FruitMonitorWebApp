@@ -57,6 +57,12 @@ export default class BoardUser extends Component {
             });
         });
 
+        socket.on("devicePaired", data => {
+            console.log("Paired device info:");
+            console.log(data);
+            alert("Device Paired!");
+        });
+
         this.setState({
           content: response.data
         });
