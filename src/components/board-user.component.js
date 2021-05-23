@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 
 import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
 
 const ENDPOINT = "http://localhost:5000";
 
@@ -10,6 +11,7 @@ export default class BoardUser extends Component {
     super(props);
 
     this.state = {
+        currentUser: undefined,
         pairCode: "",
         content: "",
         error: false,
@@ -27,7 +29,7 @@ export default class BoardUser extends Component {
     const socket = socketIOClient(ENDPOINT);
     const pairRequestData = {
         deviceId: this.state.pairCode,
-        owner: "yoyo"
+        owner: this.state.currentUser.id
     };
 
     socket.emit("pairRequest", pairRequestData);
@@ -40,6 +42,12 @@ export default class BoardUser extends Component {
   componentDidMount() {
     UserService.getUserBoard().then(
       response => {
+        const currentUser = AuthService.getCurrentUser();
+
+        if (!currentUser) this.setState({ redirect: "/home" });
+
+        this.setState({currentUser: currentUser});
+
         const socket = socketIOClient(ENDPOINT);
 
         socket.on("iotMessage", data => {
