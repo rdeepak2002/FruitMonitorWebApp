@@ -86,7 +86,7 @@ export default class Device extends Component {
                             startAngle={180}
                             lineWidth={50}
                           />
-                          <img alt="80085" src="../logo192.png"></img>
+                          <img alt="80085" src={this.state.device.imageUrl}></img>
                         </div>
 
                     )}
