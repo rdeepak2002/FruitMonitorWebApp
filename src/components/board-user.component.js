@@ -4,6 +4,8 @@ import socketIOClient from "socket.io-client";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
+import { Button, Modal } from 'react-bootstrap'
+
 const ENDPOINT = "http://localhost:5000";
 
 export default class BoardUser extends Component {
@@ -11,6 +13,7 @@ export default class BoardUser extends Component {
     super(props);
 
     this.state = {
+        showModal: false,
         currentUser: undefined,
         pairCode: "",
         content: "",
@@ -102,8 +105,27 @@ export default class BoardUser extends Component {
       <div className="container-flex">
         {this.state.devices.map(device => <button key={device.id} className="box" onClick={()=>this.handleClick(device.id)}> {device.name} </button>)}
         
-        <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
-        <button onClick={this.sendPairRequest}>Pair</button>
+        <button key="pairBtn" className="box" onClick={()=>this.setState({showModal: true})}> Add Device </button>
+
+        <Modal
+            show={this.state.showModal}
+            onHide={()=>{this.setState({showModal: false})}}
+            backdrop="static"
+            keyboard={false}
+        >
+            <Modal.Header>
+                <Modal.Title>Modal title</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
+                <Button onClick={this.sendPairRequest}>Pair</Button>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={()=>{this.setState({showModal: false})}}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
       </div>
     );
   }
