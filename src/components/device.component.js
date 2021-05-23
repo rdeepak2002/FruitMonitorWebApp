@@ -36,7 +36,7 @@ export default class Device extends Component {
                 const socket = socketIOClient(ENDPOINT);
 
                 socket.on("iotMessage", data => {
-                    if(data.owner === this.state.currentUser.id && data.deviceId === this.state.deviceId) {
+                    if(data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
                         this.setState({device: data});
                     }
                 });

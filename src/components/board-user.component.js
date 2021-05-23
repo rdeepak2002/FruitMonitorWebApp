@@ -52,17 +52,19 @@ export default class BoardUser extends Component {
         const socket = socketIOClient(ENDPOINT);
 
         socket.on("iotMessage", data => {
-            if(data.owner === this.state.currentUser.id) {
+            console.log(data);
+            console.log(data.deviceInfo);
+            if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id) {
                 let containsDevice = false;
 
                 for(let i = 0; i < this.state.devices.length; i++) {
-                    if(this.state.devices[i].id === data.deviceId) {
+                    if(this.state.devices[i].id === data.deviceInfo.id) {
                         containsDevice = true;
                     }
                 }
 
                 if(!containsDevice) {
-                    this.state.devices.push({id: data.deviceId, name: data.deviceId});
+                    this.state.devices.push(data.deviceInfo);
                 }
             }
 
