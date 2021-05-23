@@ -14,8 +14,15 @@ export default class BoardUser extends Component {
         error: false,
         iotData: {
             imageUrl: "https://i.pinimg.com/originals/e0/3d/5b/e03d5b812b2734826f76960eca5b5541.jpg"
-        }
+        },
+        devices: [{id: 1234, name: "deeps"}, {id: 4321, name:"fruits"}]
     };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log("====> HELLO YOU'VE CLICKED");
   }
 
   componentDidMount() {
@@ -50,28 +57,32 @@ export default class BoardUser extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header className="jumbotron">
-            {this.state.error && (
-                <div>
-                    <h3>{this.state.content}</h3>
+      // <div className="container">
+      //   <header className="jumbotron">
+      //       {this.state.error && (
+      //           <div>
+      //               <h3>{this.state.content}</h3>
 
-                    <div>Error retrieving dashboard.</div>
-                </div>
-            )}
+      //               <div>Error retrieving dashboard.</div>
+      //           </div>
+      //       )}
 
-            {!this.state.error && (
-                <div>
-                    <a href="/device?id=123">some device</a>
-                    <div>{this.state.content}</div>
-                    <div>
-                        <div>{this.state.iotData.imageUrl}</div>
-                        <img alt="yomama" src={this.state.iotData.imageUrl}/>
-                    </div>
-                </div>
-            )}
-        </header>
+      //       {!this.state.error && (
+      //           <div>
+      //               <a href="/device?id=123">some device</a>
+      //               <div>{this.state.content}</div>
+      //               <div>
+      //                   <div>{this.state.iotData.imageUrl}</div>
+      //                   <img alt="yomama" src={this.state.iotData.imageUrl}/>
+      //               </div>
+      //           </div>
+      //       )}
+      //   </header>
+      // </div>
+      <div className="container-flex">
+        {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick}> {device.name} </button>)}
       </div>
+
     );
   }
 }
