@@ -58,7 +58,7 @@ class App extends Component {
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
-                  User
+                  Devices
                 </Link>
               </li>
             )}
@@ -68,7 +68,7 @@ class App extends Component {
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
+                  Profile
                 </Link>
               </li>
               <li className="nav-item">
