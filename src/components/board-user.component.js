@@ -10,6 +10,7 @@ export default class BoardUser extends Component {
     super(props);
 
     this.state = {
+        pairCode: "",
         content: "",
         error: false,
         iotData: {
@@ -18,7 +19,20 @@ export default class BoardUser extends Component {
         devices: [{id: 1234, name: "deeps"}, {id: 4321, name:"fruits"}]
     };
 
+    this.changePairCode = this.changePairCode.bind(this);
+    this.sendPairRequest = this.sendPairRequest.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  changePairCode(event) {
+    console.log(event.target.value);
+    this.setState({paircode: event.target.value});
+  }
+
+  sendPairRequest() {
+    const socket = socketIOClient(ENDPOINT);
+
+    socket.emit("pairRequest", this.state.pairCode);
   }
 
   handleClick() {
@@ -81,8 +95,10 @@ export default class BoardUser extends Component {
       // </div>
       <div className="container-flex">
         {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick}> {device.name} </button>)}
+        
+        <input onChange={this.changePairCode} value={this.state.pairCode}/>
+        <button onClick={this.sendPairRequest}>Pair</button>
       </div>
-
     );
   }
 }
