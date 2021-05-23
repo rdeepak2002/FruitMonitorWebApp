@@ -65,28 +65,6 @@ export default class BoardUser extends Component {
 
   render() {
     return (
-      // <div className="container">
-      //   <header className="jumbotron">
-      //       {this.state.error && (
-      //           <div>
-      //               <h3>{this.state.content}</h3>
-
-      //               <div>Error retrieving dashboard.</div>
-      //           </div>
-      //       )}
-
-      //       {!this.state.error && (
-      //           <div>
-      //               <a href="/device?id=123">some device</a>
-      //               <div>{this.state.content}</div>
-      //               <div>
-      //                   <div>{this.state.iotData.imageUrl}</div>
-      //                   <img alt="yomama" src={this.state.iotData.imageUrl}/>
-      //               </div>
-      //           </div>
-      //       )}
-      //   </header>
-      // </div>
       <div className="container-flex">
         {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick}> {device.name} </button>)}
         
