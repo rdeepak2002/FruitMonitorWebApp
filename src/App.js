@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import socketIOClient from "socket.io-client";
+import React, { Component, useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const ENDPOINT = "http://localhost:5000";
 
-export default App;
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            iotData: {
+                imageUrl: "https://i.pinimg.com/originals/e0/3d/5b/e03d5b812b2734826f76960eca5b5541.jpg"
+            }
+        };
+    }
+
+    componentDidMount() {
+        const socket = socketIOClient(ENDPOINT);
+
+        socket.on("iotMessage", data => {
+            console.log(data);
+            this.setState({
+                iotData: data
+            });
+        });
+    
+    }
+
+    render() {
+        return (
+            <div>
+                <div>{this.state.iotData.imageUrl}</div>
+                <img alt="yomama" src={this.state.iotData.imageUrl}/>
+            </div>
+        );
+    }
+  }
+  
+  export default App;
