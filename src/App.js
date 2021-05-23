@@ -1,41 +1,107 @@
-import './App.css';
-import socketIOClient from "socket.io-client";
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
+import { Switch, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-const ENDPOINT = "http://localhost:5000";
+import AuthService from "./services/auth.service";
+
+import Login from "./components/login.component";
+import Register from "./components/register.component";
+import Home from "./components/home.component";
+import Profile from "./components/profile.component";
+import BoardUser from "./components/board-user.component";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
 
-    constructor(props) {
-        super(props);
+    this.state = {
+      currentUser: undefined
+    };
+  }
 
-        this.state = {
-            iotData: {
-                imageUrl: "https://i.pinimg.com/originals/e0/3d/5b/e03d5b812b2734826f76960eca5b5541.jpg"
-            }
-        };
-    }
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
 
-    componentDidMount() {
-        const socket = socketIOClient(ENDPOINT);
-
-        socket.on("iotMessage", data => {
-            console.log(data);
-            this.setState({
-                iotData: data
-            });
-        });
-    
-    }
-
-    render() {
-        return (
-            <div>
-                <div>{this.state.iotData.imageUrl}</div>
-                <img alt="yomama" src={this.state.iotData.imageUrl}/>
-            </div>
-        );
+    if (user && user.roles !== undefined) {
+      this.setState({
+        currentUser: user
+      });
     }
   }
-  
-  export default App;
+
+  logOut() {
+    AuthService.logout();
+  }
+
+  render() {
+    const { currentUser } = this.state;
+
+    return (
+      <div>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand">
+            FruitVision
+          </Link>
+          <div className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  User
+                </Link>
+              </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav>
+
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/user" component={BoardUser} />
+          </Switch>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
