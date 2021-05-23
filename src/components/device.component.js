@@ -17,11 +17,12 @@ export default class Device extends Component {
     const id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id;
 
     this.state = {
-    currentUser: undefined,
-      content: "",
-      error: false,
-      id: id,
-      device: undefined
+        currentUser: undefined,
+        content: "",
+        error: false,
+        id: id,
+        device: undefined,
+        imageUrl: "../logo192.png"
     };
   }
 
@@ -86,7 +87,7 @@ export default class Device extends Component {
                             startAngle={180}
                             lineWidth={50}
                           />
-                          <img alt="80085" src="../logo192.png"></img>
+                          <img alt="80085" src={this.state.imageUrl}></img>
                         </div>
 
                     )}

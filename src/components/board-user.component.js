@@ -4,7 +4,7 @@ import socketIOClient from "socket.io-client";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 
 const ENDPOINT = "http://localhost:5000";
 
@@ -114,11 +114,11 @@ export default class BoardUser extends Component {
             keyboard={false}
         >
             <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>Add Device</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
-                <Button onClick={this.sendPairRequest}>Pair</Button>
+                <Form.Control type="text" placeholder="device code" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
+                <Button style={{marginTop: "1rem"}}onClick={this.sendPairRequest}>Pair</Button>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={()=>{this.setState({showModal: false})}}>
