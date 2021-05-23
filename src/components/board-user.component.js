@@ -101,7 +101,7 @@ export default class BoardUser extends Component {
         {this.state.devices.map(device => <button key={device.id} className="box" onClick={()=>this.handleClick(device.id)}> {device.name} </button>)}
         
         <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
-        <button onClick={()=>this.sendPairRequest}>Pair</button>
+        <button onClick={this.sendPairRequest}>Pair</button>
       </div>
     );
   }
