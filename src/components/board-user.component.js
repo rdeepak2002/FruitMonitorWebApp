@@ -11,6 +11,7 @@ export default class BoardUser extends Component {
 
     this.state = {
         content: "",
+        error: false,
         iotData: {
             imageUrl: "https://i.pinimg.com/originals/e0/3d/5b/e03d5b812b2734826f76960eca5b5541.jpg"
         }
@@ -35,12 +36,13 @@ export default class BoardUser extends Component {
       },
       error => {
         this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
+            content:
+                (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+                error.message ||
+                error.toString(),
+            error: true
         });
       }
     );
@@ -50,11 +52,23 @@ export default class BoardUser extends Component {
     return (
       <div className="container">
         <header className="jumbotron">
-            <h3>{this.state.content}</h3>
-            <div>
-                <div>{this.state.iotData.imageUrl}</div>
-                <img alt="yomama" src={this.state.iotData.imageUrl}/>
-            </div>
+            {this.state.error && (
+                <div>
+                    <h3>{this.state.content}</h3>
+
+                    <div>Error retrieving dashboard.</div>
+                </div>
+            )}
+
+            {!this.state.error && (
+                <div>
+                    <div>{this.state.content}</div>
+                    <div>
+                        <div>{this.state.iotData.imageUrl}</div>
+                        <img alt="yomama" src={this.state.iotData.imageUrl}/>
+                    </div>
+                </div>
+            )}
         </header>
       </div>
     );
