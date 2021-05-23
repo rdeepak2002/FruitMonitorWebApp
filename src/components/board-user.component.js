@@ -19,14 +19,8 @@ export default class BoardUser extends Component {
         devices: [{id: 1234, name: "deeps"}, {id: 4321, name:"fruits"}]
     };
 
-    this.changePairCode = this.changePairCode.bind(this);
     this.sendPairRequest = this.sendPairRequest.bind(this);
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  changePairCode(event) {
-    console.log(event.target.value);
-    this.setState({paircode: event.target.value});
   }
 
   sendPairRequest() {
@@ -96,7 +90,7 @@ export default class BoardUser extends Component {
       <div className="container-flex">
         {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick}> {device.name} </button>)}
         
-        <input onChange={this.changePairCode} value={this.state.pairCode}/>
+        <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
         <button onClick={this.sendPairRequest}>Pair</button>
       </div>
     );
