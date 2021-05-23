@@ -62,6 +62,7 @@ export default class BoardUser extends Component {
 
             {!this.state.error && (
                 <div>
+                    <a href="/device?id=123">some device</a>
                     <div>{this.state.content}</div>
                     <div>
                         <div>{this.state.iotData.imageUrl}</div>
