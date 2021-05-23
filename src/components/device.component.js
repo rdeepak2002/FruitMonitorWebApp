@@ -4,6 +4,7 @@ import socketIOClient from "socket.io-client";
 
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
+import { PieChart } from "react-minimal-pie-chart";
 
 import qs from "qs";
 
@@ -71,9 +72,21 @@ export default class Device extends Component {
             {!this.state.error && (
                 <div>
                     {!this.state.device ? (
-                        <div>Loading Device...</div>
+                        <div className="device-loader">Loading Device...</div>
                     ) : (
-                        <div>{this.state.device.deviceId}</div>
+                        <div>
+                          {/* {this.state.device.deviceId} */}
+                          <PieChart 
+                            data={[
+                              { title: 'Good', value: 77, color: '#c6d2ed'},
+                              { title: 'Bad', value: 23, color: '#292929'}
+                            ]}
+                            lengthAngle={180}
+                            startAngle={180}
+                            lineWidth={50}
+                          />
+                        </div>
+
                     )}
                 </div>
             )}
