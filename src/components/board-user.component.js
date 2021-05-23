@@ -35,8 +35,9 @@ export default class BoardUser extends Component {
     socket.emit("pairRequest", pairRequestData);
   }
 
-  handleClick() {
-    console.log("====> HELLO YOU'VE CLICKED");
+  handleClick(deviceId) {
+    
+    // this.setState({ redirect: "/device?id="+deviceId });
   }
 
   componentDidMount() {
@@ -51,9 +52,6 @@ export default class BoardUser extends Component {
         const socket = socketIOClient(ENDPOINT);
 
         socket.on("iotMessage", data => {
-            console.log(data.owner);
-            console.log(data.deviceId);
-
             if(data.owner === this.state.currentUser.id) {
                 let containsDevice = false;
 
@@ -100,7 +98,7 @@ export default class BoardUser extends Component {
   render() {
     return (
       <div className="container-flex">
-        {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick}> {device.name} </button>)}
+        {this.state.devices.map(device => <button key={device.id} className="box" onClick={this.handleClick(device.id)}> {device.name} </button>)}
         
         <input type="text" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
         <button onClick={this.sendPairRequest}>Pair</button>
