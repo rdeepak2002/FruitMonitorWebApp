@@ -25,8 +25,12 @@ export default class BoardUser extends Component {
 
   sendPairRequest() {
     const socket = socketIOClient(ENDPOINT);
+    const pairRequestData = {
+        deviceId: this.state.pairCode,
+        owner: "yoyo"
+    };
 
-    socket.emit("pairRequest", this.state.pairCode);
+    socket.emit("pairRequest", pairRequestData);
   }
 
   handleClick() {
