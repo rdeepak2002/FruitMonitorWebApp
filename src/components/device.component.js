@@ -40,6 +40,7 @@ export default class Device extends Component {
                     if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
                         this.setState({device: data});
                     }
+                    console.log(data)
                 });
             });
         },
@@ -78,10 +79,10 @@ export default class Device extends Component {
                           {/* {this.state.device.deviceId} */}
                           <PieChart 
                             data={[
-                              { title: 'Good', value: 77, color: '#c6d2ed'},
-                              { title: 'Bad', value: 23, color: '#292929'}
+                              { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: '#c6d2ed'},
+                              { title: this.state.device.predictions[1].tagName, value: this.state.device.predictions[1].probability * 100, color: '#292929'}
                             ]}
-                            lengthAngle={180}
+                            lengthAngle={360}
                             startAngle={180}
                             lineWidth={50}
                           />
