@@ -20,7 +20,7 @@ export default class Device extends Component {
     currentUser: undefined,
       content: "",
       error: false,
-      deviceId: id,
+      id: id,
       device: undefined
     };
   }
@@ -37,7 +37,7 @@ export default class Device extends Component {
                 const socket = socketIOClient(ENDPOINT);
 
                 socket.on("iotMessage", data => {
-                    if(data.owner === this.state.currentUser.id && data.deviceId === this.state.deviceId) {
+                    if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
                         this.setState({device: data});
                     }
                 });
