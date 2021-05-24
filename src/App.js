@@ -37,8 +37,8 @@ class App extends Component {
 
   logOut() {
     AuthService.logout();
-    this.setState({goToRoot: true});
-    window.location.reload();
+    // this.setState({goToRoot: true});
+    window.location.href = "/";
   }
 
   render() {
@@ -47,7 +47,7 @@ class App extends Component {
     return (
         <Router>
         {this.state.goToRoot && (
-            <Redirect to="/"></Redirect>
+            <Redirect to="/home"></Redirect>
         )}
 
         <div>
