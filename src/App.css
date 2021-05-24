@@ -37,6 +37,8 @@ label {
     height: 10rem;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-flex div{
