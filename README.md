@@ -4,6 +4,10 @@
 
 Deepak Ramalingam & Aarush Umap
 
+## About
+
+Web application for the Fruit Vision service. 
+
 ## How to Run
 
 ```npm install```
