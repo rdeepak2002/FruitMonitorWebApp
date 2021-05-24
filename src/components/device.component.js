@@ -62,6 +62,17 @@ export default class Device extends Component {
   }
 
   render() {
+    var color0 = '#c6d2ed';
+    var color1 = '#292929';
+    if(this.state.device && this.state.device.predictions[0].tagName === "good orange")
+    {
+      var color0 = '#c6d2ed';
+      var color1 = '#292929';
+    }
+    else {
+      var color0 = '#292929';
+      var color1 = '#c6d2ed';
+    }
     return (
         <div className="container" style={{marginTop: "1rem"}}>
         <header className="jumbotron">
@@ -78,18 +89,18 @@ export default class Device extends Component {
                     {!this.state.device ? (
                         <div className="device-loader">Loading Device...</div>
                     ) : (
-                        <div>
+                        <div className="device-info">
                           {/* {this.state.device.deviceId} */}
-                          <PieChart 
+                          <PieChart className="chart"
                             data={[
-                              { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: '#c6d2ed'},
-                              { title: this.state.device.predictions[1].tagName, value: this.state.device.predictions[1].probability * 100, color: '#292929'}
+                              { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: color0},
+                              { title: this.state.device.predictions[1].tagName, value: this.state.device.predictions[1].probability * 100, color: color1}
                             ]}
-                            lengthAngle={360}
+                            lengthAngle={180}
                             startAngle={180}
                             lineWidth={50}
                           />
-                          <img alt="80085" key={Date.now()} src={this.state.imageUrl}></img>
+                          <img alt="80085" key={Date.now()} src={this.state.imageUrl} className="fruit-pic"></img>
                         </div>
 
                     )}
