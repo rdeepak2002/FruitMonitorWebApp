@@ -57,12 +57,12 @@ class App extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
+                        <Nav>
                             {currentUser && (
                                 <NavLink to={"/user"} className="nav-link" activeClassName="active">Devices</NavLink>
                             )}
                         </Nav>
-                        <Nav>
+                        <Nav className="justify-content-end" style={{ width: "100%" }}>
                             {currentUser && (
                                 <NavLink to={"/profile"} className="nav-link" activeClassName="active">My Account</NavLink>
                             )}
