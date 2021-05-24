@@ -2,7 +2,21 @@ body {
     background-color: #FAF0CA;
 }
 
+.modal-header {
+    background-color: #dfe4f0;
+}
 
+.modal-body {
+    background-color: #dfe4f0;
+}
+
+.modal-footer {
+    background-color: #dfe4f0;
+}
+
+.card {
+    background-color: #e6eaf2 !important;
+}
 
 .bg-dark {
     background-color: #EE964B !important;
