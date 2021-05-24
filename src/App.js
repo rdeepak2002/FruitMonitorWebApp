@@ -46,65 +46,65 @@ class App extends Component {
 
     return (
         <Router>
-        {this.state.goToRoot && (
-            <Redirect to="/home"></Redirect>
-        )}
-
-        <div>
-            <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
-                <div className="container">
-                    <Navbar.Brand href="/">FruitVision</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            {currentUser && (
-                                <NavLink to={"/user"} className="nav-link" activeClassName="active">Devices</NavLink>
-                            )}
-                        </Nav>
-                        <Nav>
-                            {currentUser && (
-                                <NavLink to={"/profile"} className="nav-link" activeClassName="active">My Account</NavLink>
-                            )}
-
-                            {currentUser && (
-                                <NavLink to={"/login"} className="nav-link" activeClassName="active" onClick={this.logOut}>Log Out</NavLink>
-                            )}
-
-                            {!currentUser && (
-                                <NavLink to={"/login"} className="nav-link" activeClassName="active">Login</NavLink>
-                            )}
-
-                            {!currentUser && (
-                                <NavLink to={"/register"} className="nav-link" activeClassName="active">Sign Up</NavLink>
-                            )}
-                        </Nav>
-                    </Navbar.Collapse>
-                </div>
-            </Navbar>
+            {this.state.goToRoot && (
+                <Redirect to="/home"></Redirect>
+            )}
 
             <div>
-                <Switch>
-                    <Route exact path={["/", "/home"]} component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route path="/user" component={BoardUser} />
-                    <Route path="/device" component={Device} />
-                    
-                    {(currentUser) && (
-                        <Route path='*'>
-                            <Redirect to="/user" />
-                        </Route>
-                    )}
+                <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
+                    <div className="container">
+                        <Navbar.Brand href="/">FruitVision</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-                    {(!currentUser) && (
-                        <Redirect to="/home" />
-                    )}
-                </Switch>
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav>
+                                {currentUser && (
+                                    <NavLink to={"/user"} className="nav-link" activeClassName="active">Devices</NavLink>
+                                )}
+                            </Nav>
+                            <Nav className="justify-content-end" style={{ width: "100%" }}>
+                                {currentUser && (
+                                    <NavLink to={"/profile"} className="nav-link" activeClassName="active">My Account</NavLink>
+                                )}
+
+                                {currentUser && (
+                                    <NavLink to={"/login"} className="nav-link" activeClassName="active" onClick={this.logOut}>Log Out</NavLink>
+                                )}
+
+                                {!currentUser && (
+                                    <NavLink to={"/login"} className="nav-link" activeClassName="active">Login</NavLink>
+                                )}
+
+                                {!currentUser && (
+                                    <NavLink to={"/register"} className="nav-link" activeClassName="active">Sign Up</NavLink>
+                                )}
+                            </Nav>
+                        </Navbar.Collapse>
+                    </div>
+                </Navbar>
+
+                <div>
+                    <Switch>
+                        <Route exact path={["/", "/home"]} component={Home} />
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/profile" component={Profile} />
+                        <Route path="/user" component={BoardUser} />
+                        <Route path="/device" component={Device} />
+                        
+                        {(currentUser) && (
+                            <Route path='*'>
+                                <Redirect to="/user" />
+                            </Route>
+                        )}
+
+                        {(!currentUser) && (
+                            <Redirect to="/home" />
+                        )}
+                    </Switch>
+                </div>
             </div>
-        </div>
-    </Router>
+        </Router>
     );
   }
 }
