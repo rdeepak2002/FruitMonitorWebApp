@@ -15,7 +15,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{marginTop: "1rem"}}>
         <header className="jumbotron">
           <h3>Hello World</h3>
         </header>

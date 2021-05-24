@@ -63,7 +63,7 @@ export default class Device extends Component {
 
   render() {
     return (
-        <div className="container">
+        <div className="container" style={{marginTop: "1rem"}}>
         <header className="jumbotron">
             {this.state.error && (
                 <div>

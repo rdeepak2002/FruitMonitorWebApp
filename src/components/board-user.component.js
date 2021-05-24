@@ -102,31 +102,33 @@ export default class BoardUser extends Component {
 
   render() {
     return (
-      <div className="container-flex">
-        {this.state.devices.map(device => <button key={device.id} className="box" onClick={()=>this.handleClick(device.id)}> {device.name} </button>)}
-        
-        <button key="pairBtn" className="box" onClick={()=>this.setState({showModal: true})}> Add Device </button>
+        <div className="container" style={{marginTop: "1rem"}}>
+            <div className="container-flex">
+                {this.state.devices.map(device => <button key={device.id} className="box" onClick={()=>this.handleClick(device.id)}> {device.name} </button>)}
+                
+                <button key="pairBtn" className="box" onClick={()=>this.setState({showModal: true})}> Add Device </button>
 
-        <Modal
-            show={this.state.showModal}
-            onHide={()=>{this.setState({showModal: false})}}
-            backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header>
-                <Modal.Title>Add Device</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Control type="text" placeholder="device code" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
-                <Button style={{marginTop: "1rem"}}onClick={this.sendPairRequest}>Pair</Button>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={()=>{this.setState({showModal: false})}}>
-                    Close
-                </Button>
-            </Modal.Footer>
-        </Modal>
-      </div>
+                <Modal
+                    show={this.state.showModal}
+                    onHide={()=>{this.setState({showModal: false})}}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header>
+                        <Modal.Title>Add Device</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Control type="text" placeholder="device code" onChange={e => this.setState({pairCode: e.target.value})} value={this.state.pairCode}/>
+                        <Button style={{marginTop: "1rem"}}onClick={this.sendPairRequest}>Pair</Button>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>{this.setState({showModal: false})}}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        </div>
     );
   }
 }
