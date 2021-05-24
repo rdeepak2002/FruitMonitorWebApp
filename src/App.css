@@ -40,7 +40,6 @@ label {
 }
 
 .container-flex div{
-    /* border:1px rgb(44, 39, 39) solid; */
     padding: 10px;
     margin: 5px;
 }
@@ -106,5 +105,6 @@ label {
 }
 
 .homepage-img {
-  width:100%;
+  max-width: 100%;
+  overflow: hidden;
 }
