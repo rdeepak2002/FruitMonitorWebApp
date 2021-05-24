@@ -89,11 +89,16 @@ label {
 }
 .device-info{
   margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .chart {
-  width: 50%;
-  margin: 5px;
+  width: 30%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .fruit-pic {

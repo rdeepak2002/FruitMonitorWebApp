@@ -24,7 +24,8 @@ export default class Device extends Component {
         error: false,
         id: id,
         device: undefined,
-        imageUrl: "../logo192.png"
+        imageUrl: "https://i0.wp.com/www.cssscript.com/wp-content/uploads/2015/11/ispinner.jpg?fit=400%2C298&ssl=1",
+        statusText: "good orange"
     };
   }
 
@@ -64,16 +65,20 @@ export default class Device extends Component {
   }
 
   render() {
-    var color0 = '#c6d2ed';
-    var color1 = '#292929';
+    const badColor = '#ff7961';
+    const goodColor = '#8adb5e';
+
+    let color0 = badColor;
+    let color1 = goodColor;
+
     if(this.state.device && this.state.device.predictions[0].tagName === "good orange")
     {
-      var color0 = '#c6d2ed';
-      var color1 = '#292929';
+        color0 = badColor;
+        color1 = goodColor;
     }
     else {
-      var color0 = '#292929';
-      var color1 = '#c6d2ed';
+        color0 = goodColor;
+        color1 = badColor;
     }
     return (
         <div className="container" style={{marginTop: "1rem"}}>
@@ -89,25 +94,41 @@ export default class Device extends Component {
             {!this.state.error && (
                 <div>
                     {!this.state.device ? (
-                        <div className="device-loader">Loading Device...</div>
+                        <div className="device-info">
+                            {/* <div className="device-loader">Loading Device...</div> */}
+
+                            <h2>{this.state.statusText}</h2>
+
+                            <PieChart className="chart"
+                                data={[
+                                    { title: "bad orange", value: 60, color: color0},
+                                    { title: "good orange", value: 40, color: color1}
+                                ]}
+                                lengthAngle={360}
+                                startAngle={0}
+                                lineWidth={40}
+                            >
+                            </PieChart>
+
+                            <Image alt="image" key={Date.now()} src={this.state.imageUrl} className="fruit-pic" fluid rounded/>
+                        </div>                        
                     ) : (
                         <div className="device-info">
-                          {/* {this.state.device.deviceId} */}
+                            <h2>{this.state.statusText}</h2>
 
-                          <PieChart className="chart"
-                            data={[
-                              { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: color0},
-                              { title: this.state.device.predictions[1].tagName, value: this.state.device.predictions[1].probability * 100, color: color1}
-                            ]}
-                            lengthAngle={180}
-                            startAngle={180}
-                            lineWidth={50}
-                          />
+                            <PieChart className="chart"
+                                data={[
+                                    { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: color0},
+                                    { title: this.state.device.predictions[1].tagName, value: this.state.device.predictions[1].probability * 100, color: color1}
+                                ]}
+                                lengthAngle={360}
+                                startAngle={0}
+                                lineWidth={40}
+                            >
+                            </PieChart>
 
-
-                          <Image alt="80085" key={Date.now()} src={this.state.imageUrl} className="fruit-pic"/>
+                            <Image alt="image" key={Date.now()} src={this.state.imageUrl} className="fruit-pic" fluid rounded/>
                         </div>
-
                     )}
                 </div>
             )}
