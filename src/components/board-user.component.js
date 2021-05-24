@@ -6,7 +6,7 @@ import AuthService from "../services/auth.service";
 
 import { CardDeck, CardColumns, Card, Button, Form, Modal } from 'react-bootstrap'
 
-const ENDPOINT = "http://fruitvisionserver.herokuapp.com";
+const ENDPOINT = "https://fruitvisionserver.herokuapp.com";
 
 export default class BoardUser extends Component {
   constructor(props) {

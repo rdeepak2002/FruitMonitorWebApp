@@ -10,7 +10,7 @@ import { Image } from 'react-bootstrap';
 
 import qs from "qs";
 
-const ENDPOINT = "http://fruitvisionserver.herokuapp.com";
+const ENDPOINT = "https://fruitvisionserver.herokuapp.com";
 
 export default class Device extends Component {
   constructor(props) {
