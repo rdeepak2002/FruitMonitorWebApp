@@ -25,7 +25,7 @@ export default class Device extends Component {
         id: id,
         device: undefined,
         imageUrl: "https://i0.wp.com/www.cssscript.com/wp-content/uploads/2015/11/ispinner.jpg?fit=400%2C298&ssl=1",
-        statusText: "good orange"
+        statusText: ""
     };
   }
 
@@ -45,6 +45,13 @@ export default class Device extends Component {
                         const hash = Date.now();
                         console.log(hash);
                         this.setState({device: data, imageUrl: `data:image/jpg;base64, ${data.imageUrl}`});
+
+                        if(this.state.device && this.state.device.predictions[0].probability > 0.5) {
+                            this.setState({statusText: this.state.device.predictions[0].tagName})
+                        }
+                        else if(this.state.device){
+                            this.setState({statusText: this.state.device.predictions[1].tagName})
+                        }
                     }
                     console.log(data)
                 });
@@ -68,17 +75,17 @@ export default class Device extends Component {
     const badColor = '#ff7961';
     const goodColor = '#8adb5e';
 
-    let color0 = badColor;
-    let color1 = goodColor;
+    let color0 = goodColor;
+    let color1 = badColor;
 
     if(this.state.device && this.state.device.predictions[0].tagName === "good orange")
     {
-        color0 = badColor;
-        color1 = goodColor;
-    }
-    else {
         color0 = goodColor;
         color1 = badColor;
+    }
+    else {
+        color0 = badColor;
+        color1 = goodColor;
     }
     return (
         <div className="container" style={{marginTop: "1rem"}}>
@@ -97,7 +104,7 @@ export default class Device extends Component {
                         <div className="device-info">
                             {/* <p className="device-loader">Loading Device...</p> */}
 
-                            <h2>{this.state.statusText}</h2>
+                            <h2>Good orange</h2>
 
                             <PieChart className="chart"
                                 data={[
