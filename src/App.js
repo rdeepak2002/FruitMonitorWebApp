@@ -14,6 +14,8 @@ import Device from "./components/device.component";
 
 import { Navbar, Nav } from 'react-bootstrap';
 
+import logo from './logo.png';
+
 class App extends Component {
   constructor(props) {
     super(props);
