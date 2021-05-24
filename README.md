@@ -6,7 +6,7 @@ Deepak Ramalingam & Aarush Umap
 
 ## About
 
-Web application for the Fruit Vision service. 
+Web application for the FruitVision service. 
 
 ## How to Run
 
