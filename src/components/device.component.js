@@ -6,6 +6,8 @@ import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import { PieChart } from "react-minimal-pie-chart";
 
+import { Image } from 'react-bootstrap';
+
 import qs from "qs";
 
 const ENDPOINT = "http://localhost:5000";
@@ -41,7 +43,7 @@ export default class Device extends Component {
                     if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
                         const hash = Date.now();
                         console.log(hash);
-                        this.setState({device: data, imageUrl: `${data.imageUrl}&hash=${hash}`});
+                        this.setState({device: data, imageUrl: `data:image/jpg;base64, ${data.imageUrl}`});
                     }
                     console.log(data)
                 });
@@ -91,6 +93,7 @@ export default class Device extends Component {
                     ) : (
                         <div className="device-info">
                           {/* {this.state.device.deviceId} */}
+
                           <PieChart className="chart"
                             data={[
                               { title: this.state.device.predictions[0].tagName, value: this.state.device.predictions[0].probability * 100, color: color0},
@@ -100,7 +103,9 @@ export default class Device extends Component {
                             startAngle={180}
                             lineWidth={50}
                           />
-                          <img alt="80085" key={Date.now()} src={this.state.imageUrl} className="fruit-pic"></img>
+
+
+                          <Image alt="80085" key={Date.now()} src={this.state.imageUrl} className="fruit-pic"/>
                         </div>
 
                     )}
