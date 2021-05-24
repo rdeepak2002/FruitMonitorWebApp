@@ -12,6 +12,8 @@ import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import Device from "./components/device.component";
 
+import { Container, Navbar, Nav } from 'react-bootstrap';
+
 class App extends Component {
   constructor(props) {
     super(props);

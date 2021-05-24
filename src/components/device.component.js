@@ -39,7 +39,9 @@ export default class Device extends Component {
 
                 socket.on("iotMessage", data => {
                     if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
-                        this.setState({device: data});
+                        const hash = Date.now();
+                        console.log(hash);
+                        this.setState({device: data, imageUrl: `${data.imageUrl}&hash=${hash}`});
                     }
                     console.log(data)
                 });
@@ -87,7 +89,7 @@ export default class Device extends Component {
                             startAngle={180}
                             lineWidth={50}
                           />
-                          <img alt="80085" src={this.state.device.imageUrl}></img>
+                          <img alt="80085" key={Date.now()} src={this.state.imageUrl}></img>
                         </div>
 
                     )}
