@@ -10,7 +10,7 @@ import { Image } from 'react-bootstrap';
 
 import qs from "qs";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://fruitvisionserver.herokuapp.com";
 
 export default class Device extends Component {
   constructor(props) {

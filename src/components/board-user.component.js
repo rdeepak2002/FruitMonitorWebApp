@@ -6,7 +6,7 @@ import AuthService from "../services/auth.service";
 
 import { CardDeck, CardColumns, Card, Button, Form, Modal } from 'react-bootstrap'
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://fruitvisionserver.herokuapp.com";
 
 export default class BoardUser extends Component {
   constructor(props) {
@@ -53,6 +53,8 @@ export default class BoardUser extends Component {
         this.setState({currentUser: currentUser});
 
         const socket = socketIOClient(ENDPOINT);
+
+        console.log(socket.active);
 
         socket.on("iotMessage", data => {
             console.log(data);
