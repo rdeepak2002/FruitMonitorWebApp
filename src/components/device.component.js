@@ -43,7 +43,7 @@ export default class Device extends Component {
                     if(data !== undefined && data.deviceInfo !== undefined && data.deviceInfo.owner === this.state.currentUser.id && data.deviceInfo.id === this.state.id) {
                         const hash = Date.now();
                         console.log(hash);
-                        this.setState({device: data, imageUrl: `${data.imageUrl}&hash=${hash}`});
+                        this.setState({device: data, imageUrl: `data:image/jpg;base64, ${data.imageUrl}`});
                     }
                     console.log(data)
                 });
