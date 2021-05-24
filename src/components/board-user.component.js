@@ -80,11 +80,13 @@ export default class BoardUser extends Component {
             console.log("Paired device info:");
             console.log(data);
             // alert("Device Paired!");
+
+            this.state.devices.push(data);
+
             this.setState({
                 showModal: false,
                 pairCode: ""
             });
-            this.state.devices.push(data);
         });
 
         this.setState({
