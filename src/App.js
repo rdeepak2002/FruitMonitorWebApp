@@ -52,7 +52,7 @@ class App extends Component {
                 <Redirect to="/home"></Redirect>
             )}
 
-            <div>
+            <div className="someRoot">
                 <Navbar bg="dark" expand="lg" variant="light" sticky="top">
                     <div className="container">
                         <Navbar.Brand href="/">FruitVision</Navbar.Brand>
@@ -85,7 +85,7 @@ class App extends Component {
                     </div>
                 </Navbar>
 
-                <div>
+                <div className="someRoot">
                     <Switch>
                         <Route exact path={["/", "/home"]} component={Home} />
                         <Route exact path="/login" component={Login} />
