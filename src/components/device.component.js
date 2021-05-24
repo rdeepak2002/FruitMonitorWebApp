@@ -95,11 +95,11 @@ export default class Device extends Component {
                 <div>
                     {!this.state.device ? (
                         <div className="device-info">
-                            <div className="device-loader">Loading Device...</div>
+                            {/* <p className="device-loader">Loading Device...</p> */}
 
-                            {/* <h2>{this.state.statusText}</h2> */}
+                            <h2>{this.state.statusText}</h2>
 
-                            {/* <PieChart className="chart"
+                            <PieChart className="chart"
                                 data={[
                                     { title: "bad orange", value: 60, color: color0},
                                     { title: "good orange", value: 40, color: color1}
@@ -110,7 +110,7 @@ export default class Device extends Component {
                             >
                             </PieChart>
 
-                            <Image alt="image" key={Date.now()} src={this.state.imageUrl} className="fruit-pic" fluid rounded/> */}
+                            <Image alt="image" key={Date.now()} src={this.state.imageUrl} className="fruit-pic" fluid rounded/>
                         </div>                        
                     ) : (
                         <div className="device-info">
