@@ -21,7 +21,7 @@ export default class BoardUser extends Component {
         iotData: {
             imageUrl: "https://i.pinimg.com/originals/e0/3d/5b/e03d5b812b2734826f76960eca5b5541.jpg"
         },
-        devices: [{id: 1234, name: "deeps"}, {id: 4321, name:"fruits"}]
+        devices: [{id: 1234, name: "Example 1"}, {id: 4321, name:"Example 2"}]
     };
 
     this.sendPairRequest = this.sendPairRequest.bind(this);
