@@ -51,7 +51,7 @@ class App extends Component {
             )}
 
             <div>
-                <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
+                <Navbar bg="dark" expand="lg" variant="light" sticky="top">
                     <div className="container">
                         <Navbar.Brand href="/">FruitVision</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,5 +1,9 @@
 body {
-    background-color: #E1E5EE;
+    background-color: white;
+}
+
+.bg-dark {
+    background-color: #EE964B !important;
 }
 
 strong {
@@ -84,7 +88,7 @@ label {
     text-align: center;
     margin: 5px;
     padding: 16px;
-    border: 2px solid #d1b3bf;
+    border: 2px solid #F95738;
     border-radius: 2px;
     background-color: #ffffff;
     transition-duration: 0.3s;
@@ -104,7 +108,7 @@ label {
         text-align: center;
         margin: 5px;
         padding: 16px;
-        border: 2px solid #d1b3bf;
+        border: 2px solid #F95738;
         border-radius: 2px;
         background-color: #ffffff;
         transition-duration: 0.3s;
@@ -112,8 +116,8 @@ label {
 }
 
 .box:hover {
-  background-color: #d1b3bf;
-  color: white;
+  background-color: #F4D35E;
+  color: black;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .device-loader{
