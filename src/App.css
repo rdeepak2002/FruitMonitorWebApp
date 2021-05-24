@@ -2,6 +2,8 @@ body {
     background-color: #FAF0CA;
 }
 
+
+
 .bg-dark {
     background-color: #EE964B !important;
 }
@@ -90,7 +92,7 @@ label {
     padding: 16px;
     border: 2px solid #F95738;
     border-radius: 2px;
-    background-color: #ffffff;
+    background-color: #dfe4f0;
     transition-duration: 0.3s;
 }
 
